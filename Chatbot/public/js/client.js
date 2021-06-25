@@ -4,6 +4,7 @@ let textarea = document.querySelector("#textarea");
 let messageArea = document.querySelector(".message_area");
 let send = document.getElementById('send');
 appendMessage("I am Siya, Happy to help", "incoming");
+//Add buttons
 textarea.addEventListener("keyup", (e) => {
     if (e.key === "Enter") {
         sendMessage(e.target.value)
