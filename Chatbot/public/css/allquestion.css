@@ -18,8 +18,8 @@ body{
     justify-content: space-between;
 }
 
-.chat-container, .faq-container{
-    width: 49.2%;
+.chat-container, .faq-container, .button-container {
+    width: 32.4%;
     background-color: #fff;
     padding: 30px;
     height: fit-content;
@@ -78,10 +78,11 @@ h2{
     .page-container{
         display: block;
     }
-    .chat-container, .faq-container{
+    .chat-container, .faq-container, .button-container{
         width: 100%;
     }
-    .faq-container{
+    .faq-container, .button-container{
         margin-top: 30px;
+        margin-bottom: 30px;
     }
 }

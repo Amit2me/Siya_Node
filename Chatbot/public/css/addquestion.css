@@ -51,3 +51,23 @@ h2{
     cursor: pointer;
     background-color: #0067d4;
 }
+
+.subtitle-btn{
+    padding: 4px 10px;
+    border-radius: 8px;
+    border: 1px solid #0191f1;
+    color: #0191f1;
+    cursor: pointer;
+    background-color: transparent;
+    /* margin-right: 10px; */
+}
+.subtitle-btn:hover{
+    color: white;
+    background-color: #035b96;
+}
+
+.subtitle-btn-container{
+    display: grid;
+    grid-template-columns: repeat(6, auto);
+    grid-gap: 10px;
+}

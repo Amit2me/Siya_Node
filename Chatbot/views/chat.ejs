@@ -15,6 +15,20 @@
                     <div class="cross">&#10006;</div>
                 </div>
                 <div class="message_area">
+                    <div class="btn-container">
+                        <p>I am Siya, Happy to help.. Please type or click on your query. </p>
+                    </div>
+
+                    <div class="btn-container">
+                        <% buttons.forEach(button=> { %>
+
+                            <button class="incomming-btn" onclick="btnClick('<%= button.id %>', '<%= button.title %>')">
+                                <%= button.title %>
+                            </button>
+
+                            <% }) %>
+                    </div>
+
                 </div>
                 <div class="input-container">
                     <input type="text" id="textarea" placeholder="Write a Query...">

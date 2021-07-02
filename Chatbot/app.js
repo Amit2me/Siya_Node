@@ -12,6 +12,7 @@ const adminRoute = require('./routes/adminRoute');
 const userRoute = require('./routes/userRoute');
 
 const initPassport = require("./passport-config");
+const Button = require('./models/button');
 initPassport(passport);
 
 const Port = process.env.PORT || 2000;
@@ -57,9 +58,47 @@ io.on('connection', (socket) => {
                 console.log(error)
             });
     })
+    socket.on('btnClick', (titleId) => {
+        getBtnSubtitle(titleId)
+            .then((result) => {
+                socket.emit('btnClick', result.subtitles);
+            }).catch((err) => {
+                console.log(error);
+            });
+    })
+
+    socket.on('btnAnswer', (subtitleId) => {
+        getBtnAnswer(subtitleId)
+            .then((result) => {
+                socket.emit('message', result);
+            }).catch((err) => {
+                console.log(err);
+            });
+    })
+
 })
 
 async function getAnswer(ques) {
     let result = await Chat.findOne({ 'question': { '$regex': ques, '$options': 'i' } });
     return result;
+}
+
+async function getBtnSubtitle(btnId) {
+    let result = await Button.findById(btnId)
+    return result
+}
+
+async function getBtnAnswer(id) {
+    try {
+        let results = await Button.findOne({ 'subtitles._id': id })
+        // console.log(id);
+        for (let i = 0; i < results.subtitles.length; i++) {
+
+            if (results.subtitles[i]._id == id)
+                return (results.subtitles[i].answer);
+
+        }
+    } catch (error) {
+        console.log(error);
+    }
 }

@@ -1,9 +1,10 @@
 const router = require('express').Router();
 const Faq = require('../models/faq');
+const Button = require('../models/button');
 
-
-router.get('/', searchMiddleware, (req, res) => {
-    res.render('chat');
+router.get('/', searchMiddleware, async (req, res) => {
+    let buttons = await Button.find();
+    res.render('chat', { buttons });
 });
 
 

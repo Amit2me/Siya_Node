@@ -37,6 +37,28 @@
 
         <div class="page-container">
 
+            <h2>Add Buttons Chat</h2>
+            <form action="/admin/add-button" class="question-form" method="POST">
+                <div class="question-group">
+                    <label for="title">Title:</label><br>
+                    <input name="title" id="title-question" class="textarea" value="<%= button.title %>" required>
+                </div>
+                <!-- <div class="subtitle-btn-container">
+                    <button class="subtitle-btn">subtitle</button>
+                </div> -->
+                <div class="question-group">
+                    <label for="btn-subtitle">Subtitle:</label><br>
+                    <input name="subtitle" id="btn-subtitle" class="textarea" required>
+                </div>
+                <div class="question-group">
+                    <label for="btn-answer">Answer:</label><br>
+                    <textarea name="answer" id="faq-answer" cols="30" rows="4" class="textarea" required></textarea>
+                </div>
+                <div class="question-group">
+                    <button type="submit" class="btn">ADD</button>
+                </div>
+            </form>
+
             <h2>Add Chats</h2>
             <form action="/admin/chat" class="question-form" method="POST">
                 <div class="question-group">

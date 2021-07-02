@@ -52,6 +52,22 @@
                     </div>
                     <% }) %>
             </div>
+
+            <div class="button-container">
+                <h2>Buttons Questions</h2>
+                <% buttons.forEach(button=> { %>
+                    <div class="individual-question-container">
+                        <p>
+                            <%= button.title %>
+                        </p>
+                        <form action="/admin/button/<%= button.id %>?_method=DELETE" method="POST" class="delete-form"
+                            onsubmit="return deleteConfirm()">
+                            <button class="btn btn-delete">Delete</button>
+                        </form>
+                    </div>
+                    <% }) %>
+            </div>
+
             <div class="faq-container">
                 <h2>FAQ Questions</h2>
                 <% faqs.forEach(faq=> { %>

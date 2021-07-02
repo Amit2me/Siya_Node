@@ -2,17 +2,28 @@ const socket = io();
 
 let textarea = document.querySelector("#textarea");
 let messageArea = document.querySelector(".message_area");
-let send = document.getElementById('send');
-appendMessage("I am Siya, Happy to help", "incoming");
+let btns = document.getElementsByClassName('incomming-btn');
+// let subTitleContainer = document.getElementsByClassName('subtitle-container')[0];
+// let send = document.getElementById('send');
+// appendMessage("I am Siya, Happy to help", "incoming");
 textarea.addEventListener("keyup", (e) => {
+    if (!e.target.value.trim())
+        return;
     if (e.key === "Enter") {
         sendMessage(e.target.value)
     }
 });
 
 send.addEventListener('click', () => {
+    if (!textarea.value.trim()) return;
     sendMessage(textarea.value)
 })
+
+function btnClick(btnId, btnTitle) {
+    // console.log(btnTitle);
+    appendMessage(btnTitle, "outgoing");
+    socket.emit('btnClick', btnId);
+}
 
 function sendMessage(message) {
     let msg = message.trim();
@@ -45,6 +56,41 @@ socket.on("message", (msg) => {
     scrollToBotton();
 })
 
+socket.on('btnClick', (subtitles) => {
+    appendBtn(subtitles);
+    scrollToBotton();
+})
+
 function scrollToBotton() {
     messageArea.scrollTop = messageArea.scrollHeight;
+}
+
+function appendBtn(subtitles) {
+    let buttons = [];
+    subtitles.forEach(subtitle => {
+        buttons.push(document.createElement('button'))
+    })
+
+    for (let i = 0; i < subtitles.length; i++) {
+        buttons[i].innerHTML = subtitles[i].subtitle;
+
+        buttons[i].setAttribute('onclick', `getBtnAnswer('${subtitles[i]._id}','${subtitles[i].subtitle}')`);
+        buttons[i].classList.add('incomming-btn')
+    }
+
+    let subTitleContainer = document.createElement('div');
+    subTitleContainer.classList.add('btn-container', 'subtitle-container')
+
+
+    for (let i = 0; i < subtitles.length; i++) {
+        subTitleContainer.appendChild(buttons[i]);
+    }
+
+    messageArea.appendChild(subTitleContainer)
+}
+
+function getBtnAnswer(id,name) {
+    // console.log(id);
+   appendMessage(name, "outgoing");
+    socket.emit('btnAnswer', id);
 }
