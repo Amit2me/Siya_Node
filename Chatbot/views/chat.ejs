@@ -43,15 +43,15 @@
 
             <script>
                 let cross = document.getElementsByClassName('cross')[0];
-                let robitDiv = document.getElementsByClassName('robot')[0];
+                let robotDiv = document.getElementsByClassName('robot')[0];
                 let chatSection = document.getElementsByClassName('chat_section')[0];
                 let robotImg = document.getElementById('robotImg');
                 robotImg.addEventListener('click', () => {
-                    robitDiv.classList.add('hide')
+                    robotDiv.classList.add('hide')
                     chatSection.classList.add('display');
                 })
                 cross.addEventListener('click', () => {
-                    robitDiv.classList.remove('hide');
+                    robotDiv.classList.remove('hide');
                     chatSection.classList.remove('display');
                 })
             </script>
